@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117202105) do
+ActiveRecord::Schema.define(version: 20160117210716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 20160117202105) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "listed_targets", force: :cascade do |t|
-    t.integer "list_id"
-    t.integer "target_id"
-    t.integer "order"
-  end
-
-  add_index "listed_targets", ["list_id"], name: "index_listed_targets_on_list_id", using: :btree
-  add_index "listed_targets", ["target_id"], name: "index_listed_targets_on_target_id", using: :btree
 
   create_table "lists", force: :cascade do |t|
     t.integer "flavor_id"
@@ -45,12 +36,13 @@ ActiveRecord::Schema.define(version: 20160117202105) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "flavor_id"
+    t.integer  "list_id"
   end
 
   add_index "targets", ["flavor_id"], name: "index_targets_on_flavor_id", using: :btree
+  add_index "targets", ["list_id"], name: "index_targets_on_list_id", using: :btree
 
-  add_foreign_key "listed_targets", "lists"
-  add_foreign_key "listed_targets", "targets"
   add_foreign_key "lists", "flavors"
   add_foreign_key "targets", "flavors"
+  add_foreign_key "targets", "lists"
 end
