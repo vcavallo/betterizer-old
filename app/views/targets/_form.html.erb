@@ -23,7 +23,11 @@
 
   <div class="field">
     <%= f.label :flavor %>
-    <%= f.collection_select :flavor_id, @flavors, :id, :name, prompt: true, include_blank: true %>
+    <% if params[:flavor_id].present? %>
+      <%= f.collection_select :flavor_id, @flavors, :id, :name, prompt: true, include_blank: true, selected: params[:flavor_id] %>
+    <% else %>
+      <%= f.collection_select :flavor_id, @flavors, :id, :name, prompt: true, include_blank: true  %>
+    <% end %>
   </div>
 
   <div class="actions">

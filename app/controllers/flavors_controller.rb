@@ -1,11 +1,12 @@
 class FlavorsController < ApplicationController
-  before_action :set_flavor, only: [:show, :edit, :update, :destroy]
+  before_action :set_flavor, only: [:edit, :update, :destroy]
 
   def index
-    @flavors = Flavor.all
+    @flavors = Flavor.all.includes(:targets)
   end
 
   def show
+    @flavor = Flavor.includes(:targets).find(params[:id])
   end
 
   def new

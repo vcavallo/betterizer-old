@@ -1,3 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<%= render @targets %>
+<h1>All Targets</h1>
+
+<%= link_to "new target", new_target_path %>
+
+<div class="targets-list">
+  <%= render @targets %>
+</div>

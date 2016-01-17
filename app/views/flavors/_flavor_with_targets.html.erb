@@ -1,0 +1,11 @@
+<div class="flavor" id="flavor-<%= f.id %>" >
+  <h3><%= link_to f.name, f %></h3>
+  <p><%= f.notes %></p>
+  <h4>Targets</h4>
+  <ul class="flavor-targets" id="flavor-<%= f.id %>-targets" >
+    <% f.targets.each do |t| %>
+      <li><%= link_to t.name, t %></li>
+    <% end %>
+    <li><%= link_to 'Add Target', new_target_path(flavor_id: f.id) %></li>
+  </ul>
+</div>
