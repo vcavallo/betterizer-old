@@ -2,4 +2,5 @@
 
 <%= render @list %>
 
+<%= link_to "Add Target", new_target_path(list_id: @list.id, flavor_id: @list.flavor.id) %>
 <%= link_to "Edit", edit_list_path(@list) %>

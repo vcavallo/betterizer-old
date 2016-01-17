@@ -1,3 +1,8 @@
 <div>
   <h3><%= link_to list.name, list %> <%= list.flavor ? link_to(list.flavor.name, list.flavor) : "no flavor" %></h3>
+  <ol class="list" id="list-<%= list.id %>" >
+    <% list.targets.each do |t| %>
+      <%= render 'targets/listed', t: t %>
+    <% end %>
+  </ol>
 </div>
