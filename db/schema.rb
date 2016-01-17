@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113025054) do
+ActiveRecord::Schema.define(version: 20160117201914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20160113025054) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.integer "flavor_id"
+    t.string  "name"
+  end
+
+  add_index "lists", ["flavor_id"], name: "index_lists_on_flavor_id", using: :btree
+
   create_table "targets", force: :cascade do |t|
     t.string   "name"
     t.text     "notes"
@@ -33,5 +40,6 @@ ActiveRecord::Schema.define(version: 20160113025054) do
 
   add_index "targets", ["flavor_id"], name: "index_targets_on_flavor_id", using: :btree
 
+  add_foreign_key "lists", "flavors"
   add_foreign_key "targets", "flavors"
 end
