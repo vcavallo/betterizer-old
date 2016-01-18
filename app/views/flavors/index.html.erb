@@ -1,3 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<%= render @flavors %>
+<h1>All Flavors</h1>
+
+<%= link_to "new flavor", new_flavor_path %>
+
+<div class="flavors-list">
+  <%= render 'flavors_with_targets' %>
+</div>

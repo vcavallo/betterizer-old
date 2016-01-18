@@ -21,16 +21,11 @@
     <%= f.text_field :notes %>
   </div>
 
-  <div class="field">
-    <%= f.label :flavor %>
-    <% if params[:flavor_id].present? %>
-      <%= f.collection_select :flavor_id, @flavors, :id, :name, prompt: true, include_blank: true, selected: params[:flavor_id] %>
-    <% else %>
-      <%= f.collection_select :flavor_id, @flavors, :id, :name, prompt: true, include_blank: true  %>
-    <% end %>
-  </div>
+  <%= f.hidden_field :flavor_id, value: params[:flavor_id] %>
+  <%= f.hidden_field :list_id, value: params[:list_id] %>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

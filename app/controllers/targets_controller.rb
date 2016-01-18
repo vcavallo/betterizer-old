@@ -11,6 +11,9 @@ class TargetsController < ApplicationController
   def new
     @target = Target.new
     @flavors = Flavor.all
+    if params[:list_id].present?
+      render 'new_listed_target'
+    end
   end
 
   def create
@@ -49,7 +52,7 @@ class TargetsController < ApplicationController
   end
 
   def target_params
-    params.require(:target).permit(:name, :notes, :flavor_id)
+    params.require(:target).permit(:name, :notes, :flavor_id, :list_id)
   end
 
 end

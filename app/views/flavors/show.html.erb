@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<%= render @flavor %>
+<%= render 'flavor_with_targets', f: @flavor %>
+
+<%= link_to 'Add List', new_list_path(flavor_id: @flavor.id) %>
+<%= link_to 'Add Target', new_target_path(flavor_id: @flavor.id) %>
 
 <%= link_to 'Edit', edit_flavor_path(@flavor) %>
