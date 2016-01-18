@@ -1,11 +1,23 @@
 <div class="flavor" id="flavor-<%= f.id %>" >
-  <h3><%= link_to f.name, f %></h3>
+  <h1><%= link_to f.name, f %></h1>
   <p><%= f.notes %></p>
-  <h4>Targets</h4>
+  <h2>Targets</h2>
   <ul class="flavor-targets" id="flavor-<%= f.id %>-targets" >
-    <% f.targets.each do |t| %>
-      <li><%= link_to t.name, t %></li>
+    <% f.targets.where(list_id: nil).each do |t| %>
+      <li><%= render t %></li>
     <% end %>
-    <li><%= link_to 'Add Target', new_target_path(flavor_id: f.id) %></li>
+    <li class="listed-target"><%= link_to 'Add Target', new_target_path(flavor_id: f.id) %></li>
   </ul>
+  <% if f.lists.any? %>
+    <h2>Lists</h2>
+    <% f.lists.each do |l| %>
+      <h3><%= link_to l.name, list_path(l) %></h3>
+      <ol class="flavor-list" id="flavor-list-<%= l.id %>" >
+        <% l.targets.each do |t| %>
+          <%= render 'targets/listed', l: l, t: t %>
+        <% end %>
+        <li class="listed-target"><%= link_to "Add Target", new_target_path(list_id: l.id, flavor_id: l.flavor.id) %></li>
+      </ol>
+    <% end %>
+  <% end %>
 </div>
