@@ -1,6 +1,13 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
+  def bump_item
+    @list = List.find(params[:list_id])
+    @target = Target.find(params[:target_id])
+    @target.move_higher
+    redirect_to @list
+  end
+
   def index
     @lists = List.all
   end
