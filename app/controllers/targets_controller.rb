@@ -30,10 +30,14 @@ class TargetsController < ApplicationController
   end
 
   def update
-    if @target.update(target_params)
-      redirect_to target_path(@target), notice: "target was successfully created"
-    else
-      render target_edit_path
+    respond_to do |format|
+      if @target.update(target_params)
+        format.html { redirect_to target_path(@target), notice: "target was successfully created" }
+        format.json { render json: 'hello hello', status: :ok, location: @target }
+      else
+        format.html { render target_edit_path }
+        format.json { render json: 'did not work', status: unprocessable_entity }
+      end
     end
   end
 
