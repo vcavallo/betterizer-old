@@ -3,4 +3,5 @@
 <%= render @target %>
 <p><%= @target.notes %></p>
 
+<%= @target.complete ? "Complete" : "Incomplete" %>
 <%= link_to "Edit", edit_target_path(@target) %>

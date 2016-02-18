@@ -52,7 +52,7 @@ class TargetsController < ApplicationController
   end
 
   def target_params
-    params.require(:target).permit(:name, :notes, :flavor_id, :list_id)
+    params.require(:target).permit(:name, :notes, :flavor_id, :list_id, :complete)
   end
 
 end
