@@ -3,20 +3,5 @@
 <%= render @target %>
 <p><%= @target.notes %></p>
 
-<div>
-  <a class="complete-target" data-target-id="<%= @target.id %>">mark</a>
-</div>
-<%= @target.complete ? "Complete" : "Incomplete" %>
+<span class="target-status"><%= @target.complete ? "Complete" : "Incomplete" %></span>
 <%= link_to "Edit", edit_target_path(@target) %>
-
-<script>
-   var targetId = $('.complete-target').data().targetId;
-   console.log(targetId);
-   var updatePath = '<%= target_path(@target) %>'
-   console.log(updatePath);
-$.ajax({
-url: '<%= target_path(@target) %>.json',
-type: 'PATCH',
-data: { complete: 'true' }
-})
-</script>
